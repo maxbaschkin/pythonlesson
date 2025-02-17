@@ -10,7 +10,7 @@ from pages.homepage import HomePage
 def test_button_header(browser):
     home_page = HomePage(browser)
     home_page.open()
-    header_button_selector = "(//button[@class='_button_1anfh_27 _button--dot_1anfh_237 _button--sm_1anfh_40'])[1]"
+    header_button_selector = "(//button[@class='_button_1anfh_27 _button--dot_1anfh_237 _button--sm_1anfh_40'])"
     browser.find_element(By.XPATH, header_button_selector).click()
     browser.find_element(By.XPATH, "(//input[@name='name' and @type='text'])[2]").send_keys("Максим")
     browser.find_element(By.XPATH, "(//input[@name='email' and @type='email'])[2]").send_keys("test@test.ru")
@@ -18,7 +18,7 @@ def test_button_header(browser):
     browser.find_element(By.XPATH, "(//textarea[@placeholder='Напишите кратко о проекте'])[2]").send_keys(
         "Привет это тест номер 1!")
     submit_button_selector = 'button._button_1anfh_27._button--violet_1anfh_58._button--lg_1anfh_52._custom-button_1uhw6_321'
-    submit_button = WebDriverWait(browser, 20).until(
+    submit_button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_selector))
     )
     submit_button.click()
@@ -36,7 +36,7 @@ def test_button_footer(browser):
     browser.find_element(By.XPATH, "(//textarea[@placeholder='Напишите кратко о проекте'])[2]").send_keys(
         "Привет это тест номер 2!")
     submit_button_selector = 'button._button_1anfh_27._button--violet_1anfh_58._button--lg_1anfh_52._custom-button_1uhw6_321'
-    submit_button = WebDriverWait(browser, 20).until(
+    submit_button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_selector))
     )
     submit_button.click()
@@ -71,28 +71,28 @@ def test_button_chat(browser):
         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.ws-btn-title"))
     )
     chat_button.click()
-    message_input = WebDriverWait(browser, 40).until(
+    message_input = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//div[@class='ws-textarea']"))
     )
     message_input.send_keys('Привет это тест номер 4')
-    browser.find_element(By.XPATH, "//div[@class='ws-textarea-send-btn' and @title='Отправить']/child::i").click()
-    name_input = WebDriverWait(browser, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "//input[@type='text' and @placeholder='Иван Иванов']"))
+    browser.find_element(By.CSS_SELECTOR, ".ws-textarea-send-btn[title='Отправить']").click()
+    name_input = WebDriverWait(browser, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, ".ws-preform-input.ws-preform-name"))
     )
     name_input.send_keys('Максим Максимов')
-    dropdown = WebDriverWait(browser, 30).until(
+    dropdown = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//span[@class='ws-dcpi_dropdown-toggle']"))
     )
     dropdown.click()
-    flag_button = WebDriverWait(browser, 30).until(
+    flag_button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//span[@class='ws-dcpi_flag ws-dcpi_flag-ru'][1]"))
     )
     flag_button.click()
-    browser.find_element(By.XPATH, "//input[@type='tel' and @placeholder='Введите номер телефона']").send_keys(
+    browser.find_element(By.CSS_SELECTOR, ".ws-preform-input.ws-preform-phone.ws-phone-codes-target-input").send_keys(
         '9999096909')
-    browser.find_element(By.XPATH, "//input[@type='email' and @placeholder='ivan@gmail.com'][1]").send_keys(
+    browser.find_element(By.CSS_SELECTOR, ".ws-preform-input.ws-preform-email").send_keys(
         'test@test.ru')
-    browser.find_element(By.XPATH, "//a[text()='Готово' and @class='ws-preform-btn ws-preform-btn-save'][1]").click()
+    browser.find_element(By.CSS_SELECTOR, ".ws-preform-btn.ws-preform-btn-save").click()
 
 
 # Тест_№5 - Проверка переходов по вкладкам header'а
@@ -100,7 +100,7 @@ def test_transition(browser):
     home_page = HomePage(browser)
     home_page.open()
     for i in range(1, 6):
-        item = WebDriverWait(browser, 30).until(
+        item = WebDriverWait(browser, 10).until(
             EC.element_to_be_clickable((By.XPATH, f"//li[@class='_firstLevelItem_x9t0k_43'][{i}]"))
         )
         item.click()
