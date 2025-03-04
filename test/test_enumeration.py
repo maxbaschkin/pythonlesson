@@ -1,20 +1,22 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from pages.base_paged import BrowserAutomation
+from pages.page_list import EnumerationElements
+from pages.new_order_header import NewOrderHeader
+import pytest
 
-# Настройки браузера
-options = Options()
-options.add_argument('--headless')
-browser = webdriver.Chrome(options=options)
 
-try:
-    browser.get("https://preprod.softmg.ru/")
+# Проверка кнопок на станице
+def test_enumeration():
+    browser = BrowserAutomation(headless=True)
+    browser.open_url("https://preprod.softmg.ru/")
+    enumeration = EnumerationElements(browser.browser)
+    enumeration.enumerate_and_check()
+    browser.close_browser()
 
-    elements = EnumerationElements(browser)
 
-    # Клик по всем элементам из списка
-    elements.click_all_elements()
-
-    # Или выборочно
-    # elements.click_elements_by_text("Ресторан", "Авто")
-finally:
-    browser.quit()
+#Проверка формы хэдер
+def test_new_order_header():
+    browser_automation = BrowserAutomation(headless=True)
+    browser_automation.open_url("https://preprod.softmg.ru/")
+    order = NewOrderHeader(browser_automation.browser)
+    order.fill_order_form()
+    browser_automation.close_browser()

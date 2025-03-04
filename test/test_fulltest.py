@@ -1,5 +1,5 @@
 import pytest
-from pages.base_page import BasePage
+from pages.base_paged import BasePage
 from pages.asserts import Asserts
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
