@@ -10,13 +10,13 @@ import time
 faker = Faker()
 
 
-class NewOrderHeader(BrowserAutomation):
+class NewOrderFooter(BrowserAutomation):
     def __init__(self, headless=True):
         super().__init__(headless)
 
-    def click_header_button(self):
-        WebDriverWait(self.browser, 10).until(
-            EC.element_to_be_clickable(Locators.BUTTON_HEADER)
+    def click_footer_button(self):
+        WebDriverWait(self.browser, 15).until(
+            EC.element_to_be_clickable(Locators.BUTTON_FOOTER)
         ).click()
 
     def fill_form(self, name=None, email=None, phone=None, project=None):
@@ -31,7 +31,7 @@ class NewOrderHeader(BrowserAutomation):
         self.browser.find_element(*Locators.INPUT_PROJECT_2).send_keys(project)
 
     def submit_form(self):
-        WebDriverWait(self.browser, 10).until(
+        WebDriverWait(self.browser, 15).until(
             EC.element_to_be_clickable(Locators.SUBMIT_BUTTON)
         ).click()
 

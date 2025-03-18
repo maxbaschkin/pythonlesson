@@ -1,6 +1,5 @@
-import pytest
-from pages.base_paged import BasePage
-from pages.asserts import Asserts
+from pages import BasePage
+from pages import Asserts
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC

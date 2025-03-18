@@ -1,9 +1,7 @@
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from pages.homepage import HomePage
+from pages import HomePage
 
 
 # Тест_№1 - Проверка кнопки "Оставить заявку" и формы (header).
@@ -12,11 +10,11 @@ def test_button_header(browser):
     home_page.open()
     header_button_selector = "(//button[@class='_button_1anfh_27 _button--dot_1anfh_237 _button--sm_1anfh_40'])"
     browser.find_element(By.XPATH, header_button_selector).click()
-    browser.find_element(By.XPATH, "(//input[@name='name' and @type='text'])[2]").send_keys("Максим")
-    browser.find_element(By.XPATH, "(//input[@name='email' and @type='email'])[2]").send_keys("test@test.ru")
-    browser.find_element(By.XPATH, "(//input[@name='phone' and @type='text'])[2]").send_keys("79999096909")
+    browser.find_element(By.XPATH, "(//input[@name='name' and @type='text'])[2]").send_keys("Ефим")
+    browser.find_element(By.XPATH, "(//input[@name='email' and @type='email'])[2]").send_keys("test1@test.ru")
+    browser.find_element(By.XPATH, "(//input[@name='phone' and @type='text'])[2]").send_keys("79999096910")
     browser.find_element(By.XPATH, "(//textarea[@placeholder='Напишите кратко о проекте'])[2]").send_keys(
-        "Привет это тест номер 1!")
+        "Привет это тест номер 01!")
     submit_button_selector = 'button._button_1anfh_27._button--violet_1anfh_58._button--lg_1anfh_52._custom-button_1uhw6_321'
     submit_button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_selector))
@@ -28,13 +26,13 @@ def test_button_header(browser):
 def test_button_footer(browser):
     home_page = HomePage(browser)
     home_page.open()
-    footer_button_selector = "(//button[@class='_button_1anfh_27 _button--lightWhite_1anfh_106 _button--md_1anfh_46 _button-custom_17yka_470'])"
+    footer_button_selector = "(//button[@class='_button_1anfh_27 _button--lightWhite_1anfh_106 _button--md_1anfh_46 _button_1ru51_204'])"
     browser.find_element(By.XPATH, footer_button_selector).click()
-    browser.find_element(By.XPATH, "(//input[@name='name' and @type='text'])[2]").send_keys("Максим")
-    browser.find_element(By.XPATH, "(//input[@name='email' and @type='email'])[2]").send_keys("test@test.ru")
-    browser.find_element(By.XPATH, "(//input[@name='phone' and @type='text'])[2]").send_keys("79999096909")
+    browser.find_element(By.XPATH, "(//input[@name='name' and @type='text'])[2]").send_keys("Антон")
+    browser.find_element(By.XPATH, "(//input[@name='email' and @type='email'])[2]").send_keys("test2@test.ru")
+    browser.find_element(By.XPATH, "(//input[@name='phone' and @type='text'])[2]").send_keys("79999096908")
     browser.find_element(By.XPATH, "(//textarea[@placeholder='Напишите кратко о проекте'])[2]").send_keys(
-        "Привет это тест номер 2!")
+        "Привет это тест номер 02!")
     submit_button_selector = 'button._button_1anfh_27._button--violet_1anfh_58._button--lg_1anfh_52._custom-button_1uhw6_321'
     submit_button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_selector))
@@ -47,10 +45,10 @@ def test_placeholders_footer(browser):
     home_page = HomePage(browser)
     home_page.open()
     browser.find_element(By.CSS_SELECTOR, "textarea[placeholder='Напишите кратко о проекте']").send_keys(
-        'Привет это тест!')
-    browser.find_element(By.CSS_SELECTOR, "input[placeholder='Как вас зовут?']").send_keys('Максим')
-    browser.find_element(By.CSS_SELECTOR, "input[placeholder='E-mail *']").send_keys('test1@test.ru')
-    browser.find_element(By.CSS_SELECTOR, "input[placeholder='Телефон']").send_keys('79999096909')
+        'Привет это тест03!')
+    browser.find_element(By.CSS_SELECTOR, "input[placeholder='Как вас зовут?']").send_keys('Иван')
+    browser.find_element(By.CSS_SELECTOR, "input[placeholder='E-mail *']").send_keys('test3@test.ru')
+    browser.find_element(By.CSS_SELECTOR, "input[placeholder='Телефон']").send_keys('79999096907')
     for i in range(1, 7):
         xpath = f"//div[@class='_tagsWrapper_1r0gr_27']/child::button[{i}]"
         browser.find_element(By.XPATH, xpath).click()
